@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Academy | Loading...</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23141a29'/><path d='M50 15L20 35v30l30 20 30-20V35z' fill='none' stroke='%2300ffb3' stroke-width='8'/><path d='M50 35l-15 10v20l15 10 15-10V45z' fill='%2300ffb3'/></svg>">
+    <style>
+        /* Loading Screen Styles */
+        #loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0c0f17;
+            color: #e6f1ff;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loader-container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            color: #00ffb3;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        .loader-text {
+            color: #8892b0;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .progress-text {
+            color: #00ffb3;
+            font-family: 'IBM Plex Mono', monospace;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .loader-bar {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(136, 146, 176, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .loader-progress {
+            height: 100%;
+            width: 0%;
+            background-color: #00ffb3;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+            position: relative;
+        }
+
+        .loader-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                            transparent, 
+                            rgba(0, 255, 179, 0.4), 
+                            transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .binary-code {
+            color: rgba(136, 146, 176, 0.3);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            line-height: 1.4;
+            user-select: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        .fade-out {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
+
+        /* Main Content Styles - Initially Hidden */
+        #main-content {
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loader-container">
+        <div class="loader-container" id="loader">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                 <span>Welcome To Cyber Ghost Academy</span>
+           
+               
+            </div>
+            <div class="loader-text">Connecting to Cyber Ghost Academy...</div>
+            <div class="progress-text" id="progress-text">0%</div>
+            <div class="loader-bar">
+                <div class="loader-progress" id="loader-progress"></div>
+            </div>
+            <div class="binary-code">
+                 
+                01001001 01101110 01101001 01110100 01101001 01100001 01101100 01101001 01111010 01101001 01101110 01100111 00100000 01110011 01111001 01110011 01110100 01100101 01101101 00100000 01110011 01100101 01100011 01110101 01110010 01101001 01110100 01111001 00100000 01101101 01101111 01100100 01110101 01101100 01100101 01110011 00101110 00101110 00101110<br>
+                01010110 01100101 01110010 01101001 01100110 01111001 01101001 01101110 01100111 00100000 01100011 01110010 01100101 01100100 01100101 01101110 01110100 01101001 01100001 01101100 01110011 00100000 01100001 01101110 01100100 00100000 01110000 01100101 01110010 01101101 01101001 01110011 01110011 01101001 01101111 01101110 01110011 00101110 00101110 00101110
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Website Content - Initially Hidden -->
+    <div id="main-content">
+        <!-- Your existing website content goes here -->
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>CyberSec Academy | Master Ethical Hacking</title>
+            <link rel="icon"
+                href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23141a29'/><path d='M50 15L20 35v30l30 20 30-20V35z' fill='none' stroke='%2300ffb3' stroke-width='8'/><path d='M50 35l-15 10v20l15 10 15-10V45z' fill='%2300ffb3'/></svg>">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <link
+                href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap"
+                rel="stylesheet">
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+
+                :root {
+                    --primary: #0c0f17;
+                    --secondary: #141a29;
+                    --accent: #00ffb3;
+                    --accent-dark: #00cc90;
+                    --text: #e6f1ff;
+                    --light-text: #8892b0;
+                    --card-bg: rgba(20, 26, 41, 0.7);
+                    --border: rgba(0, 255, 179, 0.15);
+                    --transition: all 0.3s ease;
+                }
+
+                body {
+                    background-color: var(--primary);
+                    color: var(--text);
+                    overflow-x: hidden;
+                    font-family: 'Montserrat', sans-serif;
+                    background-image:
+                        radial-gradient(circle at 10% 10%, rgba(20, 26, 41, 0.3) 0%, transparent 15%),
+                        radial-gradient(circle at 90% 90%, rgba(20, 26, 41, 0.3) 0%, transparent 15%);
+                    min-height: 100vh;
+                    line-height: 1.6;
+                }
+
+                h1,
+                h2,
+                h3,
+                h4,
+                h5 {
+                    font-family: 'IBM Plex Mono', monospace;
+                    font-weight: 600;
+                }
+
+                /* Header & Navigation */
+                header {
+                    background-color: rgba(12, 15, 23, 0.95);
+                    backdrop-filter: blur(10px);
+                    position: fixed;
+                    width: 100%;
+                    z-index: 1000;
+                    padding: 1rem 5%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 1px solid var(--border);
+                }
+
+                .logo {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    color: var(--accent);
+                    font-family: 'IBM Plex Mono', monospace;
+                }
+
+                .logo i {
+                    color: var(--accent);
+                }
+
+                nav ul {
+                    display: flex;
+                    list-style: none;
+                    gap: 2rem;
+                }
+
+                nav a {
+                    color: var(--light-text);
+                    text-decoration: none;
+                    font-weight: 500;
+                    transition: var(--transition);
+                    position: relative;
+                    padding: 0.5rem 0;
+                    font-size: 0.95rem;
+                }
+
+                nav a:hover {
+                    color: var(--accent);
+                }
+
+                nav a.active {
+                    color: var(--accent);
+                }
+
+                nav a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background: var(--accent);
+                    transition: var(--transition);
+                }
+
+                nav a:hover::after,
+                nav a.active::after {
+                    width: 100%;
+                }
+
+                .auth-buttons {
+                    display: flex;
+                    gap: 1rem;
+                }
+
+                .btn {
+                    padding: 0.7rem 1.8rem;
+                    border-radius: 4px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: var(--transition);
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 0.95rem;
+                    text-align: center;
+                }
+
+                .btn-login {
+                    background: transparent;
+                    border: 1px solid var(--accent);
+                    color: var(--accent);
+                }
+
+                .btn-login:hover {
+                    background: rgba(0, 255, 179, 0.1);
+                }
+
+                .btn-signup {
+                    background: var(--accent);
+                    border: 1px solid var(--accent);
+                    color: var(--primary);
+                    font-weight: 700;
+                }
+
+                .btn-signup:hover {
+                    background: var(--accent-dark);
+                    border-color: var(--accent-dark);
+                }
+
+                .btn-outline {
+                    background: transparent;
+                    border: 1px solid var(--light-text);
+                    color: var(--light-text);
+                }
+
+                .btn-outline:hover {
+                    border-color: var(--accent);
+                    color: var(--accent);
+                }
+
+                /* Hero Section */
+                .hero {
+                    padding: 12rem 5% 8rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    position: relative;
+                    overflow: hidden;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+
+                .hero::before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 600px;
+                    height: 600px;
+                    background: radial-gradient(circle, rgba(0, 255, 179, 0.1) 0%, transparent 70%);
+                    z-index: -1;
+                    opacity: 0.5;
+                }
+
+                .hero h1 {
+                    font-size: 3.2rem;
+                    margin-bottom: 1.5rem;
+                    line-height: 1.2;
+                    max-width: 900px;
+                }
+
+                .accent-gradient {
+                    background: linear-gradient(135deg, var(--accent), #5e60ce);
+                    -webkit-background-clips: text;
+                    -webkit-text-fill-color: transparent;
+                    display: inline-block;
+                }
+
+                .hero p {
+                    font-size: 1.15rem;
+                    max-width: 700px;
+                    margin: 0 auto 2.5rem;
+                    color: var(--light-text);
+                    line-height: 1.7;
+                }
+
+                .hero-buttons {
+                    display: flex;
+                    gap: 1.5rem;
+                    margin-top: 1rem;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                .stats {
+                    display: flex;
+                    gap: 3rem;
+                    margin-top: 4rem;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                .stat-item {
+                    text-align: center;
+                }
+
+                .stat-value {
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    color: var(--accent);
+                    margin-bottom: 0.5rem;
+                    font-family: 'IBM Plex Mono', monospace;
+                }
+
+                .stat-label {
+                    color: var(--light-text);
+                    font-size: 0.95rem;
+                }
+
+                /* Sections */
+                .section {
+                    padding: 5rem 5%;
+                    position: relative;
+                }
+
+                .section-title {
+                    text-align: center;
+                    margin-bottom: 3.5rem;
+                    font-size: 2.3rem;
+                    position: relative;
+                    display: inline-block;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+                .section-title::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -12px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 70px;
+                    height: 4px;
+                    background: var(--accent);
+                    border-radius: 2px;
+                }
+
+                .section-subtitle {
+                    text-align: center;
+                    max-width: 700px;
+                    margin: 0 auto 4rem;
+                    color: var(--light-text);
+                    font-size: 1.1rem;
+                }
+
+                .bg-dark {
+                    background-color: var(--secondary);
+                }
+
+                /* Categories Section */
+                .category-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                    gap: 2.5rem;
+                    max-width: 1300px;
+                    margin: 0 auto;
+                }
+
+                .category-card {
+                    background: var(--card-bg);
+                    border-radius: 12px;
+                    overflow: hidden;
+                    transition: var(--transition);
+                    border: 1px solid var(--border);
+                    position: relative;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .category-card:hover {
+                    transform: translateY(-8px);
+                    border-color: rgba(0, 255, 179, 0.3);
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                }
+
+                .card-header {
+                    padding: 1.8rem 1.8rem 1.2rem;
+                    background: rgba(20, 26, 41, 0.8);
+                    border-bottom: 1px solid var(--border);
+                }
+
+                .card-header h3 {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    color: var(--accent);
+                    font-size: 1.4rem;
+                }
+
+                .card-body {
+                    padding: 1.8rem;
+                    flex-grow: 1;
+                }
+
+                .card-body p {
+                    color: var(--light-text);
+                    margin-bottom: 1.5rem;
+                    line-height: 1.7;
+                }
+
+                .card-body ul {
+                    list-style: none;
+                    margin-top: 1rem;
+                }
+
+                .card-body li {
+                    padding: 0.8rem 0;
+                    border-bottom: 1px solid rgba(136, 146, 176, 0.1);
+                    display: flex;
+                    align-items: center;
+                }
+
+                .card-body li:last-child {
+                    border-bottom: none;
+                }
+
+                .card-body li i {
+                    color: var(--accent);
+                    margin-right: 12px;
+                    width: 20px;
+                    text-align: center;
+                }
+
+                .card-body a {
+                    color: var(--text);
+                    text-decoration: none;
+                    transition: var(--transition);
+                }
+
+                .card-body a:hover {
+                    color: var(--accent);
+                }
+
+                /* AI Tools Section */
+                .tools-container {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    gap: 2.5rem;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                }
+
+                .tool-card {
+                    background: var(--card-bg);
+                    border-radius: 12px;
+                    padding: 2.5rem 2rem;
+                    text-align: center;
+                    transition: var(--transition);
+                    border: 1px solid var(--border);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .tool-card:hover {
+                    transform: translateY(-8px);
+                    border-color: rgba(0, 255, 179, 0.3);
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                }
+
+                .tool-icon {
+                    width: 80px;
+                    height: 80px;
+                    background: rgba(0, 255, 179, 0.1);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 1.8rem;
+                    font-size: 2.5rem;
+                    color: var(--accent);
+                    transition: var(--transition);
+                }
+
+                .tool-card:hover .tool-icon {
+                    background: rgba(0, 255, 179, 0.2);
+                    transform: scale(1.1);
+                }
+
+                .tool-card h3 {
+                    margin-bottom: 1.2rem;
+                    font-size: 1.4rem;
+                }
+
+                .tool-card p {
+                    color: var(--light-text);
+                    margin-bottom: 2rem;
+                    flex-grow: 1;
+                }
+
+                /* Resources Section */
+                .resources-container {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                    gap: 2.5rem;
+                    max-width: 1300px;
+                    margin: 0 auto;
+                }
+
+                .resource-card {
+                    background: var(--card-bg);
+                    border-radius: 12px;
+                    padding: 2.5rem 2rem;
+                    border: 1px solid var(--border);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .resource-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 4px;
+                    height: 100%;
+                    background: var(--accent);
+                }
+
+                .resource-card h3 {
+                    color: var(--accent);
+                    margin-bottom: 1.8rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    font-size: 1.4rem;
+                }
+
+                .resource-card ul {
+                    list-style: none;
+                }
+
+                .resource-card li {
+                    margin-bottom: 1.2rem;
+                    padding-bottom: 1.2rem;
+                    border-bottom: 1px solid rgba(136, 146, 176, 0.1);
+                }
+
+                .resource-card li:last-child {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                    border-bottom: none;
+                }
+
+                .resource-card a {
+                    color: var(--text);
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    transition: var(--transition);
+                }
+
+                .resource-card a:hover {
+                    color: var(--accent);
+                }
+
+                /* Testimonials */
+                .testimonials {
+                    padding: 6rem 5%;
+                    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+                }
+
+                .testimonials-container {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+                    gap: 2.5rem;
+                    max-width: 1300px;
+                    margin: 0 auto;
+                }
+
+                .testimonial-card {
+                    background: var(--card-bg);
+                    border-radius: 12px;
+                    padding: 2.5rem;
+                    border: 1px solid var(--border);
+                    position: relative;
+                }
+
+                .testimonial-card::before {
+                    content: '"';
+                    position: absolute;
+                    top: 20px;
+                    right: 30px;
+                    font-size: 5rem;
+                    color: rgba(0, 255, 179, 0.1);
+                    font-family: serif;
+                    line-height: 1;
+                }
+
+                .testimonial-content {
+                    color: var(--light-text);
+                    margin-bottom: 1.5rem;
+                    font-style: italic;
+                    line-height: 1.7;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .testimonial-author {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                }
+
+                .author-avatar {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background: var(--accent);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--primary);
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                }
+
+                .author-info h4 {
+                    color: var(--text);
+                    margin-bottom: 0.2rem;
+                }
+
+                .author-info p {
+                    color: var(--light-text);
+                    font-size: 0.9rem;
+                }
+
+                /* CTA Section */
+                .cta {
+                    padding: 8rem 5%;
+                    text-align: center;
+                    background: linear-gradient(to right, rgba(12, 15, 23, 0.9), rgba(20, 26, 41, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23141a29"/><path d="M0 0L100 100M100 0L0 100" stroke="%2300ffb3" stroke-width="0.5" stroke-opacity="0.1"/></svg>');
+                    background-size: cover;
+                }
+
+                .cta-content {
+                    max-width: 700px;
+                    margin: 0 auto;
+                }
+
+                .cta h2 {
+                    font-size: 2.5rem;
+                    margin-bottom: 1.5rem;
+                }
+
+                .cta p {
+                    color: var(--light-text);
+                    margin-bottom: 2.5rem;
+                    font-size: 1.1rem;
+                    line-height: 1.7;
+                }
+
+                /* Footer */
+                footer {
+                    background: rgba(12, 15, 23, 0.95);
+                    padding: 4rem 5% 2rem;
+                    border-top: 1px solid var(--border);
+                }
+
+                .footer-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 3rem;
+                    margin-bottom: 3rem;
+                    max-width: 1300px;
+                    margin: 0 auto 3rem;
+                }
+
+                .footer-column h3 {
+                    color: var(--accent);
+                    margin-bottom: 1.8rem;
+                    font-size: 1.4rem;
+                }
+
+                .footer-column p {
+                    color: var(--light-text);
+                    margin-bottom: 1.5rem;
+                    line-height: 1.7;
+                }
+
+                .footer-column ul {
+                    list-style: none;
+                }
+
+                .footer-column li {
+                    margin-bottom: 0.9rem;
+                }
+
+                .footer-column a {
+                    color: var(--light-text);
+                    text-decoration: none;
+                    transition: var(--transition);
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                .footer-column a:hover {
+                    color: var(--accent);
+                }
+
+                .social-links {
+                    display: flex;
+                    gap: 1rem;
+                    margin-top: 1.5rem;
+                }
+
+                .social-links a {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 50%;
+                    background: rgba(136, 146, 176, 0.1);
+                    color: var(--accent);
+                    transition: var(--transition);
+                    font-size: 1.1rem;
+                }
+
+                .social-links a:hover {
+                    background: var(--accent);
+                    color: var(--primary);
+                    transform: translateY(-5px);
+                }
+
+                .copyright {
+                    text-align: center;
+                    padding-top: 2.5rem;
+                    border-top: 1px solid rgba(136, 146, 176, 0.1);
+                    color: var(--light-text);
+                    font-size: 0.9rem;
+                    max-width: 1300px;
+                    margin: 0 auto;
+                }
+
+                /* Responsive Design */
+                @media (max-width: 1024px) {
+                    .hero {
+                        padding: 10rem 5% 6rem;
+                    }
+
+                    .hero h1 {
+                        font-size: 2.8rem;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    nav ul {
+                        display: none;
+                    }
+
+                    .hero {
+                        padding: 8rem 5% 4rem;
+                    }
+
+                    .hero h1 {
+                        font-size: 2.3rem;
+                    }
+
+                    .hero p {
+                        font-size: 1.05rem;
+                    }
+
+                    .hero-buttons {
+                        flex-direction: column;
+                        gap: 1rem;
+                        width: 100%;
+                        max-width: 300px;
+                    }
+
+                    .btn {
+                        width: 100%;
+                        text-align: center;
+                    }
+
+                    .stats {
+                        gap: 2rem;
+                    }
+
+                    .stat-value {
+                        font-size: 2rem;
+                    }
+
+                    .section {
+                        padding: 4rem 5%;
+                    }
+
+                    .section-title {
+                        font-size: 2rem;
+                    }
+                }
+
+                @media (max-width: 480px) {
+                    .logo span {
+                        font-size: 1.3rem;
+                    }
+
+                    .auth-buttons {
+                        gap: 0.7rem;
+                    }
+
+                    .btn {
+                        padding: 0.6rem 1.2rem;
+                        font-size: 0.9rem;
+                    }
+
+                    .hero h1 {
+                        font-size: 2rem;
+                    }
+
+                    .stats {
+                        gap: 1.5rem;
+                    }
+
+                    .stat-item {
+                        flex: 0 0 40%;
+                    }
+
+                    .stat-value {
+                        font-size: 1.8rem;
+                    }
+                }
+
+                /* Animation */
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .animated {
+                    animation: fadeIn 0.8s ease-out forwards;
+                }
+
+                .delay-1 {
+                    animation-delay: 0.1s;
+                }
+
+                .delay-2 {
+                    animation-delay: 0.2s;
+                }
+
+                .delay-3 {
+                    animation-delay: 0.3s;
+                }
+
+                .delay-4 {
+                    animation-delay: 0.4s;
+                }
+            </style>
+        </head>
+
+        <body>
+            <!-- Header -->
+            <header>
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CyberSec Academy</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="tools.html"><i class="fas fa-tools"></i>  Download Tools</a></li>
+                        <li><a href="labs.html"><i class="fas fa-laptop-code"></i> Labs</a></li>
+                        <li><a href="ai_Security.html"><i class="fas fa-robot"></i> AI Security</a></li>
+                        <li><a href="resourses.html"><i class="fas fa-book"></i> Resources</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="login.html" class="btn btn-login">Login</a>
+                    <a href="signup.html" class="btn btn-signup">Sign Up</a>
+                </div>
+            </header>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <h1 style="color: #85a5e0;" class="animated">Master <i> Cyber-Ghost</i> <span class="accent-gradient">Ethical & </span> Black Hat
+                     Ethical Hacking</h1>
+                <p class="animated delay-1">Learn cutting-edge security techniques, tools, and AI-powered defense strategies
+                    through our comprehensive educational platform. All resources are for legal, ethical & UnEthical hacking
+                    security research only.</p>
+                <div class="hero-buttons">
+                    <a href="resourses.html"
+                        class="btn btn-signup animated delay-2">Start Learning <i class="fas fa-arrow-right"></i></a>
+                    <a href="labs.html" class="btn btn-outline animated delay-3">Explore Labs</a>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item animated delay-1">
+                        <div class="stat-value">15K+</div>
+                        <div class="stat-label">Students Trained</div>
+                    </div>
+                    <div class="stat-item animated delay-2">
+                        <div class="stat-value">300+</div>
+                        <div class="stat-label">Learning Modules</div>
+                    </div>
+                    <div class="stat-item animated delay-3">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">Security Tools</div>
+                    </div>
+                    <div class="stat-item animated delay-4">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Virtual Labs</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categories Section -->
+            <section class="section bg-dark">
+                <h2 class="section-title">Learning Paths</h2>
+                <p class="section-subtitle">Comprehensive cybersecurity learning tracks designed by industry experts</p>
+
+                <div class="category-grid">
+                    <div class="category-card animated">
+                        <div class="card-header">
+                            <h3><i class="fas fa-terminal"></i>Learn About Hacking Tools</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Essential tools for penetration testing and security analysis:</p>
+                            <ul>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=PbxI5GQkqdA&list=PLa2xctTiNSCgtlM7S6FkNC2396_xNwtm8">Learn
+                                        Metasploit Framework</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=qTaOZrDnMzQ">Learn Wireshark - Packet Analysis</a>
+                                </li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=27zYf9EPhWw">Learn Nmap - Network Scanning</a>
+                                </li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=7Fl7OoIzQYY&list=PLa2xctTiNSCjVzFfxTn_UKkd-sS34EQaF">Learn
+                                        Burp Suite - Web Testing</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=aCVr7anoBxg">Learn John the Ripper - Password
+                                        Cracking</a>
+                                </li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=AnwgxRtWXLI&list=PLhfrWIlLOoKMe1Ue0IdeULQvEgCgQ3a1B">Learn
+                                        Kali Linux - Penetration OS</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="category-card animated delay-1">
+                        <div class="card-header">
+                            <h3><i class="fas fa-lock"></i>Learn About Practice Platforms</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Legal environments to practice your skills:</p>
+                            <ul>
+                                <li><i class="fas fa-caret-right"></i> <a href="https://www.youtube.com/@HackTheBox">Learn Hack
+                                        The Box</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=ROO2pDPgja4&list=PLCD3FoP0vxE4FI5dvdLnx-ky8sitsIgOB">Learn
+                                        TryHackMe</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=ff2Au8BIy_A&list=PLBf0hzazHTGOIn_vuuuCzRFVhYiDBnJID">Learn
+                                        OverTheWire</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=ZBi8Qa9m5c0&list=PLLKT__MCUeixCoi2jtP2Jj8nZzM4MOzBL">Learn
+                                        PentesterLab</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=xTuttHtrBhs">Learn VulnHub</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.youtube.com/watch?v=x-qaeuw74WE&list=PL1H1sBF1VAKVTu-v1XcJV9VVdhEEALvkY">Learn
+                                        CTFtime - Capture The Flag</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="category-card animated delay-2">
+                        <div class="card-header">
+                            <h3><i class="fas fa-graduation-cap"></i>Resources For Learning</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Knowledge bases and educational content:</p>
+                            <ul>
+                                <!-- <li><i class="fas fa-caret-right"></i> <a href="#">OWASP Top 10 Vulnerabilities</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a href="#">Cybrary - Free Courses</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a href="#">PortSwigger Web Security Academy</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a href="#">MITRE ATT&CK Framework</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a href="#">Security Blogs & News</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a href="#">Certification Guides (CEH, OSCP)</a></li> -->
+                                <li><i class="fas fa-caret-right"></i> <a href="https://owasp.org/www-project-top-ten/">OWASP
+                                        Top 10 Vulnerabilities</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a href="https://www.cybrary.it/">Cybrary - Free
+                                        Courses</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://portswigger.net/web-security">PortSwigger Web Security Academy</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a href="https://attack.mitre.org/">MITRE ATT&CK
+                                        Framework</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a href="https://www.securityweek.com/"
+                                        target="_blank">Security Blogs & News</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a
+                                        href="https://www.eccouncil.org/programs/certified-ethical-hacker-ceh/"
+                                        target="_blank">Certification Guide - CEH</a></li>
+                                <li><i class="fas fa-caret-right"></i> <a href="https://www.offsec.com/courses/pen-200/"
+                                        target="_blank">Certification Guide - OSCP</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Tools Section -->
+            <section class="section">
+                <h2 class="section-title">AI-Powered Security Tools</h2>
+                <p class="section-subtitle">Advanced AI solutions enhancing cybersecurity capabilities</p>
+
+                <div class="tools-container">
+                    <div class="tool-card animated">
+                        <div class="tool-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI Vulnerability Scanner</h3>
+                        <p>Intelligent scanning that learns from each test to improve detection capabilities and reduce false
+                            positives.</p>
+                        <a href="https://owasp.org/www-project-machine-learning-security/" class="btn btn-login">Explore</a>
+                    </div>
+
+                    <div class="tool-card animated delay-1">
+                        <div class="tool-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Threat Prediction</h3>
+                        <p>Predictive analytics to identify potential threats before they materialize using machine learning
+                            models.</p>
+                        <a href="https://attack.mitre.org/resources/" class="btn btn-login">Explore</a>
+                    </div>
+
+                    <div class="tool-card animated delay-2">
+                        <div class="tool-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Smart Code Analysis</h3>
+                        <p>AI-powered code review that detects vulnerabilities in source code across multiple programming
+                            languages.</p>
+                        <a href="https://semgrep.dev/" class="btn btn-login">Explore</a>
+                    </div>
+
+                    <div class="tool-card animated delay-3">
+                        <div class="tool-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h3>Phishing Detection</h3>
+                        <p>Advanced NLP algorithms to identify and block sophisticated phishing attempts in real-time.</p>
+                        <a href="https://medium.com/swlh/building-a-phishing-detection-model-using-machine-learning-31cfd532c91f"
+                            class="btn btn-login">Explore</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources Section -->
+            <section class="section bg-dark">
+                <h2 class="section-title">Security Resources</h2>
+                <p class="section-subtitle">Essential resources for cybersecurity professionals</p>
+
+                <div class="resources-container">
+                    <div class="resource-card animated">
+                        <h3><i class="fas fa-newspaper"></i> Blogs & News</h3>
+                        <ul>
+                            <li><a href="https://krebsonsecurity.com/" target="_blank"><i class="fas fa-link"></i> Krebs on
+                                    Security</a></li>
+                            <li><a href="https://thehackernews.com/" target="_blank"><i class="fas fa-link"></i> The Hacker
+                                    News</a></li>
+                            <li><a href="https://www.darkreading.com/" target="_blank"><i class="fas fa-link"></i> Dark
+                                    Reading</a></li>
+                            <li><a href="https://www.schneier.com/" target="_blank"><i class="fas fa-link"></i> Schneier on
+                                    Security</a></li>
+                            <li><a href="https://threatpost.com/" target="_blank"><i class="fas fa-link"></i> ThreatPost</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="resource-card animated delay-1">
+                        <h3><i class="fas fa-book"></i> Documentation</h3>
+                        <ul>
+                            <li><a href="https://cheatsheetseries.owasp.org/" target="_blank"><i class="fas fa-link"></i> OWASP
+                                    Cheat Sheet Series</a></li>
+                            <li><a href="https://attack.mitre.org/" target="_blank"><i class="fas fa-link"></i> MITRE ATT&CK
+                                    Knowledge Base</a></li>
+                            <li><a href="https://www.nist.gov/cyberframework" target="_blank"><i class="fas fa-link"></i> NIST
+                                    Cybersecurity Framework</a></li>
+                            <li><a href="https://www.sans.org/white-papers/" target="_blank"><i class="fas fa-link"></i> SANS
+                                    Security Resources</a></li>
+                            <li><a href="https://datatracker.ietf.org/doc/search/?name=&sort=&rfcs=on&area=sec"
+                                    target="_blank"><i class="fas fa-link"></i> RFC Security Documents</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="resource-card animated delay-2">
+                        <h3><i class="fas fa-video"></i> Video Learning</h3>
+                        <ul>
+                            <li><a href="https://www.youtube.com/c/LiveOverflow" target="_blank"><i class="fas fa-link"></i>
+                                    LiveOverflow YouTube Channel</a></li>
+                            <li><a href="https://www.youtube.com/c/JohnHammond010" target="_blank"><i class="fas fa-link"></i>
+                                    John Hammond</a></li>
+                            <li><a href="https://www.youtube.com/c/Nahamsec" target="_blank"><i class="fas fa-link"></i>
+                                    NahamSec</a></li>
+                            <li><a href="https://www.youtube.com/c/TheCyberMentor" target="_blank"><i class="fas fa-link"></i>
+                                    The Cyber Mentor</a></li>
+                            <li><a href="https://www.youtube.com/user/BlackHatOfficialYT" target="_blank"><i
+                                        class="fas fa-link"></i> Black Hat Conference Talks</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="testimonials">
+                <h2 class="section-title">Student Success Stories</h2>
+                <p class="section-subtitle">Hear from our cybersecurity professionals</p>
+
+                <div class="testimonials-container">
+                    <div class="testimonial-card animated">
+                        <div class="testimonial-content">
+                            "The hands-on labs and real-world scenarios at CyberSec Academy prepared me for my OSCP
+                            certification. The AI-powered tools helped me understand complex vulnerabilities much faster."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SJ</div>
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Security Analyst @ CyberGuard</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card animated delay-1">
+                        <div class="testimonial-content">
+                            "As a career changer, I found the learning paths perfectly structured. Within 6 months I went from
+                            complete beginner to landing my first cybersecurity role. The community support was invaluable."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MR</div>
+                            <div class="author-info">
+                                <h4>Michael Rodriguez</h4>
+                                <p>Junior Penetration Tester @ SecureNet</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card animated delay-2">
+                        <div class="testimonial-content">
+                            "The AI vulnerability scanner course completely transformed how I approach web application security.
+                            The predictive threat modules helped me prevent three potential breaches last quarter."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">TP</div>
+                            <div class="author-info">
+                                <h4>Taylor Park</h4>
+                                <p>Security Engineer @ TechFortress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta">
+                <div class="cta-content">
+                    <h2 class="animated">Start Your Cybersecurity Journey Today</h2>
+                    <p class="animated delay-1">Join thousands of students mastering ethical hacking skills in our immersive
+                        learning environment. All courses include hands-on labs and AI-powered learning tools.</p>
+                    <div class="hero-buttons">
+                        <a href="https://tryhackme.com" target="_blank" class="btn btn-signup animated delay-2">Get Started
+                            Now</a>
+                        <a href="https://www.hackerone.com/demo" target="_blank"
+                            class="btn btn-outline animated delay-3">Schedule a Demo</a>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h3>CyberSec Academy</h3>
+                        <p>Your trusted resource for ethical and black hat Ethical  hacking education and cybersecurity training since 2018 you Learn for Cyber Ghost In AK Courses website and Desingn and Create a free website for AI.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="https://github.com/cyber123822/CyberGhsot/settings/pages"><i class="fab fa-github"></i></a>
+                            <a href="https://cyber123822.github.io/Cyber-World/"><i class="fab fa-discord"></i></a>
+                            <a href="https://www.youtube.com/@CYBERGHOST-f2f"><i class="fab fa-youtube"></i></a>
+                            <a href="https://cyber123822.github.io/Cyber-Ghost/"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Learning Paths</h3>
+                        <ul>
+                            <li><a href="https://tryhackme.com/paths/beginner" target="_blank"><i
+                                        class="fas fa-chevron-right"></i> Beginner Track</a></li>
+                            <li><a href="https://www.hackthebox.com/academy/path/penetration-tester" target="_blank"><i
+                                        class="fas fa-chevron-right"></i> Penetration Testing</a></li>
+                            <li><a href="https://portswigger.net/web-security" target="_blank"><i
+                                        class="fas fa-chevron-right"></i> Web Application Security</a></li>
+                            <li><a href="https://www.cybrary.it/course/network-security/" target="_blank"><i
+                                        class="fas fa-chevron-right"></i> Network Defense</a></li>
+                            <li><a href="https://learn.microsoft.com/en-us/security/compass/ai-security-guidance"
+                                    target="_blank"><i class="fas fa-chevron-right"></i> AI Security Specialist</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="https://www.kali.org/docs/" target="_blank"><i class="fas fa-chevron-right"></i>
+                                    Documentation</a></li>
+                            <li><a href="https://tools.kali.org/tools-listing" target="_blank"><i
+                                        class="fas fa-chevron-right"></i> Security Tools</a></li>
+                            <li><a href="https://tryhackme.com/" target="_blank"><i class="fas fa-chevron-right"></i> Practice
+                                    Labs</a></li>
+                            <li><a href="https://www.hackingarticles.in/" target="_blank"><i class="fas fa-chevron-right"></i>
+                                    Blog & Tutorials</a></li>
+                            <li><a href="https://forum.hackthebox.com/" target="_blank"><i class="fas fa-chevron-right"></i>
+                                    Community Forum</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="https://policies.google.com/terms" target="_blank"><i class="fas fa-chevron-right"></i>
+                                    Terms of Service</a></li>
+                            <li><a href="https://policies.google.com/privacy" target="_blank"><i
+                                        class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                            <li><a href="https://www.mozilla.org/en-US/about/governance/policies/participation/"
+                                    target="_blank"><i class="fas fa-chevron-right"></i> Ethical Guidelines</a></li>
+                            <li><a href="https://hackerone.com/disclosure-guidelines" target="_blank"><i
+                                        class="fas fa-chevron-right"></i> Responsible Disclosure</a></li>
+                            <li><a href="https://www.iso.org/isoiec-27001-information-security.html" target="_blank"><i
+                                        class="fas fa-chevron-right"></i> Compliance</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="copyright">
+                    <p>Important Notice: This website is for educational purposes and more only. All  balck hat hacking for Ethicaly techniques and tools should
+                        only be used on systems you own or have explicit permission to test. Unauthorized access to computer
+                        systems is illegal.</p>
+                    <p>&copy; 2023 CyberSec Academy. All rights reserved. | contact@cybersec.academy</p>
+                </div>
+            </footer>
+
+            <script>
+                // Simple animation observer
+                document.addEventListener('DOMContentLoaded', function () {
+                    const observerOptions = {
+                        threshold: 0.1
+                    };
+
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('animated');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, observerOptions);
+
+                    // Observe elements
+                    document.querySelectorAll('.category-card, .tool-card, .resource-card, .testimonial-card').forEach(card => {
+                        observer.observe(card);
+                    });
+
+                    // Add interactive effect to cards
+                    const cards = document.querySelectorAll('.category-card, .tool-card, .resource-card');
+                    cards.forEach(card => {
+                        card.addEventListener('mouseenter', () => {
+                            card.style.boxShadow = '0 15px 35px rgba(0, 255, 179, 0.15)';
+                        });
+
+                        card.addEventListener('mouseleave', () => {
+                            card.style.boxShadow = '';
+                        });
+                    });
+                });
+            </script>
+        </body>
+
+        </html>
+    </div>
+
+    <script>
+        // Simulate loading progress
+        const loaderContainer = document.getElementById('loader-container');
+        const loaderProgress = document.getElementById('loader-progress');
+        const progressText = document.getElementById('progress-text');
+        const mainContent = document.getElementById('main-content');
+        
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += Math.random() * 10;
+            if (progress > 100) progress = 100;
+            
+            loaderProgress.style.width = `${progress}%`;
+            progressText.textContent = `${Math.floor(progress)}%`;
+            
+            if (progress === 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    loaderContainer.classList.add('fade-out');
+                    setTimeout(() => {
+                        // Show main content after loader fades out
+                        loaderContainer.style.display = 'none';
+                        mainContent.style.display = 'block';
+                        
+                        // Trigger animations for main content
+                        document.querySelectorAll('.animated').forEach(el => {
+                            el.style.opacity = 0;
+                        });
+                    }, 500);
+                }, 500);
+            }
+        }, 300);
+
+        // Generate random binary code animation
+        const binaryElement = document.querySelector('.binary-code');
+        setInterval(() => {
+            const lines = binaryElement.textContent.split('\n');
+            const randomLine = Math.floor(Math.random() * lines.length);
+            const binary = lines[randomLine].split(' ');
+            
+            // Flip one random bit
+            const randomBit = Math.floor(Math.random() * binary.length);
+            binary[randomBit] = binary[randomBit].split('').map(b => Math.random() > 0.9 ? (b === '0' ? '1' : '0') : b).join('');
+            
+            lines[randomLine] = binary.join(' ');
+            binaryElement.textContent = lines.join('\n');
+        }, 100);
+    </script>
+</body>
+</html>

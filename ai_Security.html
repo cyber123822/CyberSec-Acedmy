@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Academy | AI Security</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23141a29'/><path d='M50 15L20 35v30l30 20 30-20V35z' fill='none' stroke='%2300ffb3' stroke-width='8'/><path d='M50 35l-15 10v20l15 10 15-10V45z' fill='%2300ffb3'/></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0c0f17;
+            --secondary: #141a29;
+            --accent: #00ffb3;
+            --accent-dark: #00cc90;
+            --text: #e6f1ff;
+            --light-text: #8892b0;
+            --card-bg: rgba(20, 26, 41, 0.7);
+            --border: rgba(0, 255, 179, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(20, 26, 41, 0.3) 0%, transparent 15%),
+                radial-gradient(circle at 90% 90%, rgba(20, 26, 41, 0.3) 0%, transparent 15%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0 0L100 100M100 0L0 100" stroke="%2300ffb3" stroke-width="0.3" stroke-opacity="0.05"/></svg>');
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(12, 15, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'IBM Plex Mono', monospace;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a.active {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-login:hover {
+            background: rgba(0, 255, 179, 0.1);
+        }
+
+        .btn-signup {
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .btn-signup:hover {
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--light-text);
+            color: var(--light-text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .ai-hero {
+            padding: 12rem 5% 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 179, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .ai-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--accent), #5e60ce);
+            -webkit-background-clips: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .ai-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: var(--light-text);
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* AI Security Sections */
+        .ai-section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            font-size: 2.3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+
+        .bg-dark {
+            background-color: var(--secondary);
+        }
+
+        /* AI Features */
+        .ai-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 179, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* AI Tools */
+        .ai-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 179, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .tool-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(12, 15, 23, 0.8));
+        }
+
+        .tool-type {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .tool-content {
+            padding: 1.8rem;
+        }
+
+        .tool-content h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .tool-content p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .tool-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .tool-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tool-link:hover {
+            gap: 0.8rem;
+        }
+
+        /* AI Threats */
+        .threats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .threat-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .threat-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 179, 0.3);
+        }
+
+        .threat-level {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+
+        .critical {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .high {
+            background: #ff9966;
+            color: white;
+        }
+
+        .medium {
+            background: #ffcc66;
+            color: var(--primary);
+        }
+
+        .threat-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .threat-card p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* AI Learning Path */
+        .learning-path {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .path-item {
+            display: flex;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .path-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .path-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 179, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            flex-shrink: 0;
+            margin-right: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .path-content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.8rem;
+            border: 1px solid var(--border);
+            flex-grow: 1;
+        }
+
+        .path-content h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .path-content p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .path-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .path-link:hover {
+            gap: 0.8rem;
+        }
+
+        .learning-path::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 30px;
+            width: 2px;
+            background: var(--border);
+            z-index: 1;
+        }
+
+        /* CTA Section */
+        .ai-cta {
+            padding: 8rem 5%;
+            text-align: center;
+            background: linear-gradient(to right, rgba(12, 15, 23, 0.9), rgba(20, 26, 41, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23141a29"/><path d="M0 0L100 100M100 0L0 100" stroke="%2300ffb3" stroke-width="0.5" stroke-opacity="0.1"/></svg>');
+            background-size: cover;
+        }
+
+        .ai-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-cta p {
+            color: var(--light-text);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(12, 15, 23, 0.95);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 1.8rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-column p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.9rem;
+        }
+
+        .footer-column a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(136, 146, 176, 0.1);
+            color: var(--accent);
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(136, 146, 176, 0.1);
+            color: var(--light-text);
+            font-size: 0.9rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .ai-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .path-item {
+                flex-direction: column;
+            }
+            
+            .path-icon {
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+            
+            .learning-path::before {
+                left: 30px;
+                height: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .ai-hero {
+                padding: 10rem 5% 4rem;
+            }
+            
+            .ai-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .learning-path::before {
+                display: none;
+            }
+            
+            .path-icon {
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo span {
+                font-size: 1.3rem;
+            }
+            
+            .auth-buttons {
+                gap: 0.7rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .ai-hero {
+                padding: 8rem 5% 3rem;
+            }
+            
+            .ai-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .ai-hero p {
+                font-size: 1.05rem;
+            }
+            
+            .ai-tools-grid, .threats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animated {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberSec Academy</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="tools.html"><i class="fas fa-tools"></i>  Download Tools</a></li>
+                <li><a href="labs.html"><i class="fas fa-laptop-code"></i> Labs</a></li>
+                <li><a href="ai_Security.html" class="active"><i class="fas fa-robot"></i> AI Security</a></li>
+                <li><a href="resourses.html"><i class="fas fa-book"></i> Resources</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html" class="btn btn-login">Login</a>
+            <a href="signup.html" class="btn btn-signup">Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="ai-hero">
+        <h1 class="animated">AI-Powered Cybersecurity</h1>
+        <p class="animated delay-1">Explore the future of security with our cutting-edge AI tools and defenses against emerging AI-powered threats</p>
+        <div class="hero-buttons">
+            <a href="https://agileblue.com/ghostgpt-the-new-black-hat-ai-tool-crafting-malware-for-cybercriminals/" class="btn btn-signup animated delay-2">Try AI Tools</a>
+            <a href="https://www.youtube.com/watch?v=R4iJMIgj6ZI&t=60s" class="btn btn-outline animated delay-3">Learn About AI Threats</a>
+        </div>
+    </section>
+
+    <!-- AI Features -->
+    <section class="ai-section">
+        <h2 class="section-title">AI Security Features</h2>
+        <p class="section-subtitle">How artificial intelligence is transforming cybersecurity</p>
+        
+        <div class="ai-features">
+            <div class="feature-card animated">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Threat Prediction</h3>
+                <p>Our AI models analyze patterns across millions of data points to predict emerging threats before they materialize, giving you proactive defense capabilities.</p>
+                <a href="https://www.coursera.org/learn/ibm-incident-response-digital-forensics" class="tool-link">Explore <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="feature-card animated delay-1">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Adaptive Defense</h3>
+                <p>Self-learning algorithms that continuously adapt to new attack vectors, providing dynamic protection that evolves with the threat landscape.</p>
+                <a href="https://www.mdpi.com/2076-3417/14/19/9142" class="tool-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="feature-card animated delay-2">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Smart Code Analysis</h3>
+                <p>AI-powered static and dynamic analysis that detects vulnerabilities in source code with unprecedented accuracy across multiple programming languages.</p>
+                <a href="https://www.codiga.io/" class="tool-link">Try Demo <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools -->
+    <section class="ai-section bg-dark">
+        <h2 class="section-title">AI Security Tools</h2>
+        <p class="section-subtitle">Cutting-edge tools leveraging artificial intelligence for enhanced security</p>
+        
+        <div class="ai-tools-grid">
+            <div class="tool-card animated">
+                <div class="tool-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcC_xsN9dyeb4THrOVPj4VB8hlj9tcisCDnw&s')">
+                    <span class="tool-type">Vulnerability</span>
+                </div>
+                <div class="tool-content">
+                    <h3>AI Vulnerability Scanner</h3>
+                    <p>Next-generation scanner that uses machine learning to identify complex vulnerabilities traditional tools miss, with continuously improving detection rates.</p>
+                    <div class="tool-meta">
+                        <span><i class="fas fa-tag"></i> Web & Network</span>
+                        <a href="#" class="tool-link">Access Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tool-card animated delay-1">
+                <div class="tool-image" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80')">
+                    <span class="tool-type">Detection</span>
+                </div>
+                <div class="tool-content">
+                    <h3>Phishing Detector</h3>
+                    <p>Advanced NLP models that analyze email content, headers, and metadata to identify sophisticated phishing attempts with 99.7% accuracy.</p>
+                    <div class="tool-meta">
+                        <span><i class="fas fa-tag"></i> Email Security</span>
+                        <a href="https://www.checkpoint.com/cyber-hub/threat-prevention/what-is-phishing/phishing-detection-techniques/" class="tool-link">Access Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tool-card animated delay-2">
+                <div class="tool-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCx3KjvCpaMVBLQnrceNrqA1pB1YQz7xThzQ&s')">
+                    <span class="tool-type">Analysis</span>
+                </div>
+                <div class="tool-content">
+                    <h3>Malware Classifier</h3>
+                    <p>Deep learning system that analyzes file characteristics and behavior to detect zero-day malware with minimal false positives.</p>
+                    <div class="tool-meta">
+                        <span><i class="fas fa-tag"></i> Endpoint Protection</span>
+                        <a href="https://hybrid-analysis.com/" class="tool-link">Access Tool <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Threats -->
+    <section class="ai-section">
+        <h2 class="section-title">AI-Powered Threats</h2>
+        <p class="section-subtitle">Understanding emerging security risks from adversarial AI</p>
+        
+        <div class="threats-container">
+            <div class="threat-card animated">
+                <div class="threat-level critical">
+                    <i class="fas fa-skull"></i>
+                </div>
+                <h3>Deepfake Attacks</h3>
+                <p>AI-generated synthetic media used for sophisticated social engineering, CEO fraud, and disinformation campaigns with alarming realism.</p>
+                <a href="https://www.crowdstrike.com/en-us/cybersecurity-101/social-engineering/deepfake-attack/" class="tool-link">Defense Strategies <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="threat-card animated delay-1">
+                <div class="threat-level high">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <h3>AI-Generated Malware</h3>
+                <p>Polymorphic malware that continuously evolves to bypass signature-based detection systems using generative adversarial networks.</p>
+                <a href="https://www.impactmybiz.com/blog/how-ai-generated-malware-is-changing-cybersecurity/" class="tool-link">Detection Methods <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="threat-card animated delay-2">
+                <div class="threat-level medium">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>Automated Hacking</h3>
+                <p>AI systems that can autonomously probe networks, identify vulnerabilities, and exploit them without human intervention.</p>
+                <a href="https://www.arkoselabs.com/anti-bot/automated-bot-attacks" class="tool-link">Protection Guide <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path -->
+    <section class="ai-section bg-dark">
+        <h2 class="section-title">AI Security Learning Path</h2>
+        <p class="section-subtitle">Master the skills needed for AI-powered cybersecurity</p>
+        
+        <div class="learning-path">
+            <div class="path-item animated">
+                <div class="path-icon floating">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="path-content">
+                    <h3>Fundamentals of AI Security</h3>
+                    <p>Learn the core concepts of artificial intelligence as applied to cybersecurity, including machine learning basics and neural networks.</p>
+                    <a href="https://www.youtube.com/watch?v=6WmtIaIX-bQ" class="path-link">Start Learning <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="path-item animated delay-1">
+                <div class="path-icon floating">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="path-content">
+                    <h3>Defensive AI Applications</h3>
+                    <p>Hands-on training with AI-powered security tools for threat detection, anomaly detection, and automated response systems.</p>
+                    <a href="https://www.wiz.io/academy/ai-security" class="path-link">Start Learning <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="path-item animated delay-2">
+                <div class="path-icon floating">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <div class="path-content">
+                    <h3>Adversarial AI & Countermeasures</h3>
+                    <p>Advanced techniques for defending against AI-powered attacks and securing your own AI systems from manipulation.</p>
+                    <a href="https://www.paloaltonetworks.com/cyberpedia/what-are-adversarial-attacks-on-AI-Machine-Learning" class="path-link">Start Learning <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="path-item animated delay-3">
+                <div class="path-icon floating">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="path-content">
+                    <h3>AI Security Architectures</h3>
+                    <p>Designing enterprise security systems that integrate AI components while maintaining explainability and auditability.</p>
+                    <a href="https://www.cisco.com/site/us/en/learn/topics/artificial-intelligence/ai-security-reference-architecture.html#:~:text=Secure%20design%20patterns%20and%20practices%20for%20teams%20developing%20LLM%2Dpowered%20applications.&text=This%20resource%20provides%20secure%20design,to%20a%20type%20of%20application." class="path-link">Start Learning <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="ai-cta">
+        <h2 class="animated">Ready to Secure Your Future?</h2>
+        <p class="animated delay-1">Join our AI Security program today and gain access to cutting-edge tools, labs, and expert-led training on defending against next-generation threats.</p>
+        <div class="hero-buttons">
+            <a href="https://www.wqu.edu/adsl?utm_term=best%20free%20data%20science%20certification&utm_campaign=GA_DS_SEA_WW_New&utm_source=adwords&utm_medium=ppc&hsa_acc=1450481729&hsa_cam=22090057659&hsa_grp=176226075114&hsa_ad=728250100699&hsa_src=g&hsa_tgt=kwd-652646153229&hsa_kw=best%20free%20data%20science%20certification&hsa_mt=b&hsa_net=adwords&hsa_ver=3&gad_source=1&gad_campaignid=22090057659&gbraid=0AAAAApC1CrW_NanwAIY0CtYooM0RsgeB5&gclid=Cj0KCQjwhO3DBhDkARIsANxrhToJl2MdyCpuF5EZzciI2QL86TvoD3DKJkFl9DUSvMJqY590ktxkWFQaAj-LEALw_wcB" class="btn btn-signup animated delay-2">Start Free Trial</a>
+            <a href="https://cyber123822.github.io/Cyber-World/" class="btn btn-outline animated delay-3">Schedule Demo</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>CyberSec Academy</h3>
+                <p>Your trusted resource for ethical hacking education and cybersecurity training since 2018.</p>
+                <div class="social-links">
+                    <a href="https://cyber123822.github.io/Cyber-World/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/cyber123822/CyberGhsot/settings/pages"><i class="fab fa-github"></i></a>
+                    <a href="https://cyber123822.github.io/Cyber-Ghost/index.html"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.youtube.com/@CYBERGHOST-f2f    "><i class="fab fa-youtube"></i></a>
+                    <a href="https://cyber123822.github.io/Cyber-World/"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Learning Paths</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Beginner Track</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Penetration Testing</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Web Application Security</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Network Defense</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> AI Security Specialist</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Security Tools</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Practice Labs</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog & Tutorials</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Community Forum</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Ethical Guidelines</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Responsible Disclosure</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Compliance</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>Important Notice: This website is for educational purposes only. All hacking techniques and tools should only be used on systems you own or have explicit permission to test. Unauthorized access to computer systems is illegal.</p>
+            <p>&copy; 2023 CyberSec Academy. All rights reserved. | contact@cybersec.academy</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation for elements
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements
+            document.querySelectorAll('.feature-card, .tool-card, .threat-card, .path-item, .ai-cta > *').forEach(el => {
+                observer.observe(el);
+            });
+            
+            // Add hover effect to cards
+            const cards = document.querySelectorAll('.feature-card, .tool-card, .threat-card, .path-content');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.boxShadow = '0 15px 35px rgba(0, 255, 179, 0.15)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.boxShadow = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

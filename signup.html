@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Academy | Create Account</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23141a29'/><path d='M50 15L20 35v30l30 20 30-20V35z' fill='none' stroke='%2300ffb3' stroke-width='8'/><path d='M50 35l-15 10v20l15 10 15-10V45z' fill='%2300ffb3'/></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0c0f17;
+            --secondary: #141a29;
+            --accent: #00ffb3;
+            --accent-dark: #00cc90;
+            --text: #e6f1ff;
+            --light-text: #8892b0;
+            --card-bg: rgba(20, 26, 41, 0.7);
+            --border: rgba(0, 255, 179, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(20, 26, 41, 0.3) 0%, transparent 15%),
+                radial-gradient(circle at 90% 90%, rgba(20, 26, 41, 0.3) 0%, transparent 15%);
+            min-height: 100vh;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(12, 15, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'IBM Plex Mono', monospace;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a.active {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-login:hover {
+            background: rgba(0, 255, 179, 0.1);
+        }
+
+        .btn-signup {
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .btn-signup:hover {
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--light-text);
+            color: var(--light-text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Main Content */
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+        }
+
+        .signup-container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .signup-form {
+            flex: 1;
+            padding: 4rem;
+        }
+
+        .signup-benefits {
+            flex: 1;
+            padding: 4rem;
+            background: linear-gradient(135deg, rgba(20, 26, 41, 0.9), rgba(12, 15, 23, 0.9));
+            border-left: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signup-benefits::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 255, 179, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .signup-form h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .signup-form p {
+            color: var(--light-text);
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(12, 15, 23, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 255, 179, 0.1);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-text);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .terms-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .terms-group input {
+            margin-top: 0.3rem;
+        }
+
+        .terms-group label {
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+
+        .terms-group a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .terms-group a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            padding: 1.1rem;
+            font-size: 1.1rem;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 2rem 0;
+            color: var(--light-text);
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .divider span {
+            padding: 0 1rem;
+            font-size: 0.9rem;
+        }
+
+        .social-login {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem;
+            background: rgba(12, 15, 23, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .social-btn:hover {
+            border-color: var(--accent);
+            background: rgba(0, 255, 179, 0.05);
+        }
+
+        .social-btn i {
+            font-size: 1.2rem;
+        }
+
+        .login-link {
+            text-align: center;
+            color: var(--light-text);
+            margin-top: 1.5rem;
+        }
+
+        .login-link a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .benefits-list {
+            list-style: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 255, 179, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .benefit-content h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-content p {
+            color: var(--light-text);
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(12, 15, 23, 0.95);
+            padding: 3rem 5% 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(136, 146, 176, 0.1);
+            color: var(--light-text);
+            font-size: 0.9rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .signup-container {
+                flex-direction: column;
+            }
+            
+            .signup-benefits {
+                border-left: none;
+                border-top: 1px solid var(--border);
+            }
+            
+            .signup-form, .signup-benefits {
+                padding: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .signup-form, .signup-benefits {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            .signup-form h2 {
+                font-size: 2rem;
+            }
+            
+            .social-login {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo span {
+                font-size: 1.3rem;
+            }
+            
+            .auth-buttons {
+                gap: 0.7rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .main-container {
+                padding: 6rem 5% 3rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberSec Academy</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="tools.html"><i class="fas fa-tools"></i>  Download Tools</a></li>
+                <li><a href="labs.html"><i class="fas fa-laptop-code"></i> Labs</a></li>
+                <li><a href="ai_Security.html"><i class="fas fa-robot"></i> AI Security</a></li>
+                <li><a href="resourses.html"><i class="fas fa-book"></i> Resources</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html" class="btn btn-login">Login</a>
+            <a href="signup.html" class="btn btn-signup">Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Signup Section -->
+    <div class="main-container">
+        <div class="signup-container">
+            <div class="signup-form">
+                <h2 class="animated">Create Your Account</h2>
+                <p class="animated delay-1">Join our cybersecurity community and start your journey today</p>
+                
+                <form id="signupForm">
+                    <div class="form-group animated delay-1">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group animated delay-2">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group animated delay-2">
+                        <label for="password">Password</label>
+                        <div class="password-container">
+                            <input type="password" id="password" class="form-control" placeholder="Create a strong password" required>
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group animated delay-3">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                    </div>
+                    
+                    <div class="terms-group animated delay-3">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I confirm that I will use these skills ethically and legally.</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-signup btn-block animated delay-4">Create Account</button>
+                    
+                    <div class="divider animated delay-4">
+                        <span>OR CONTINUE WITH</span>
+                    </div>
+                    
+                    <div class="social-login animated delay-4">
+                        <button type="button" class="social-btn">
+                            <i class="fab fa-github"></i> GitHub
+                        </button>
+                        <button type="button" class="social-btn">
+                            <i class="fab fa-google"></i> Google
+                        </button>
+                        <button type="button" class="social-btn">
+                            <i class="fab fa-microsoft"></i> Microsoft
+                        </button>
+                    </div>
+                    
+                    <div class="login-link animated delay-4">
+                        Already have an account? <a href="login.html">Log in</a>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="signup-benefits">
+                <h2 class="animated">Why Join CyberSec Academy?</h2>
+                <p class="animated delay-1">Unlock the full potential of your cybersecurity journey</p>
+                
+                <ul class="benefits-list">
+                    <li class="animated delay-1">
+                        <div class="benefit-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Hands-On Labs</h3>
+                            <p>Access our virtual labs 24/7 to practice real-world security scenarios in a safe environment.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="animated delay-2">
+                        <div class="benefit-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>AI-Powered Tools</h3>
+                            <p>Utilize cutting-edge AI security tools for vulnerability scanning and threat prediction.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="animated delay-3">
+                        <div class="benefit-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Certification Paths</h3>
+                            <p>Structured learning paths for industry certifications like CEH, OSCP, and CISSP.</p>
+                        </div>
+                    </li>
+                    
+                    <li class="animated delay-4">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Expert Community</h3>
+                            <p>Join a network of security professionals and participate in CTF challenges.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="copyright">
+            <p>Important Notice: This website is for educational purposes only. All hacking techniques and tools should only be used on systems you own or have explicit permission to test. Unauthorized access to computer systems is illegal.</p>
+            <p>&copy; 2023 CyberSec Academy. All rights reserved. | contact@cybersec.academy</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle password visibility
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+            
+            // Form validation
+            const signupForm = document.getElementById('signupForm');
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match!');
+                    return;
+                }
+                
+                // Simulate successful signup
+                alert('Account created successfully! Redirecting to dashboard...');
+                
+                // In a real application, you would submit the form to a server
+                // window.location.href = 'dashboard.html';
+            });
+            
+            // Animation for form elements
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements
+            document.querySelectorAll('.signup-form > *:not(h2):not(p), .signup-benefits > *:not(h2):not(p)').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

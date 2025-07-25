@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Academy | Security Resources</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23141a29'/><path d='M50 15L20 35v30l30 20 30-20V35z' fill='none' stroke='%2300ffb3' stroke-width='8'/><path d='M50 35l-15 10v20l15 10 15-10V45z' fill='%2300ffb3'/></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0c0f17;
+            --secondary: #141a29;
+            --accent: #00ffb3;
+            --accent-dark: #00cc90;
+            --text: #e6f1ff;
+            --light-text: #8892b0;
+            --card-bg: rgba(20, 26, 41, 0.7);
+            --border: rgba(0, 255, 179, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-image:
+                radial-gradient(circle at 10% 10%, rgba(20, 26, 41, 0.3) 0%, transparent 15%),
+                radial-gradient(circle at 90% 90%, rgba(20, 26, 41, 0.3) 0%, transparent 15%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(12, 15, 23, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'IBM Plex Mono', monospace;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a.active {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-login:hover {
+            background: rgba(0, 255, 179, 0.1);
+        }
+
+        .btn-signup {
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .btn-signup:hover {
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--light-text);
+            color: var(--light-text);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Main Content */
+        .resources-header {
+            padding: 12rem 5% 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(to bottom, var(--primary), rgba(12, 15, 23, 0.8));
+        }
+
+        .resources-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 255, 179, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .resources-header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--accent), #5e60ce);
+            -webkit-background-clips: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .resources-header p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: var(--light-text);
+            line-height: 1.7;
+        }
+
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.2rem 1.2rem 1.2rem 3.5rem;
+            background: rgba(20, 26, 41, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 255, 179, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .category-btn {
+            padding: 0.6rem 1.5rem;
+            background: rgba(20, 26, 41, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--light-text);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Resources Sections */
+        .resources-section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            font-size: 2.3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+
+        .bg-dark {
+            background-color: var(--secondary);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .resource-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 179, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .resource-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .resource-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(12, 15, 23, 0.8));
+        }
+
+        .resource-type {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .resource-content {
+            padding: 1.8rem;
+        }
+
+        .resource-content h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .resource-content p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .resource-link:hover {
+            gap: 0.8rem;
+        }
+
+        /* Cheatsheets Section */
+        .cheatsheets-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .cheatsheet-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cheatsheet-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 179, 0.3);
+        }
+
+        .cheatsheet-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .cheatsheet-card ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .cheatsheet-card li {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(136, 146, 176, 0.1);
+        }
+
+        .cheatsheet-card li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .cheatsheet-card a {
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .cheatsheet-card a:hover {
+            color: var(--accent);
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 179, 0.3);
+        }
+
+        .tool-card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .tool-card p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .tool-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            padding: 5rem 5%;
+            background: linear-gradient(to right, rgba(12, 15, 23, 0.9), rgba(20, 26, 41, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23141a29"/><path d="M0 0L100 100M100 0L0 100" stroke="%2300ffb3" stroke-width="0.5" stroke-opacity="0.1"/></svg>');
+            background-size: cover;
+            text-align: center;
+        }
+
+        .newsletter-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: rgba(20, 26, 41, 0.7);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 255, 179, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(12, 15, 23, 0.95);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 1.8rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-column p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.9rem;
+        }
+
+        .footer-column a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(136, 146, 176, 0.1);
+            color: var(--accent);
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(136, 146, 176, 0.1);
+            color: var(--light-text);
+            font-size: 0.9rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .resources-header h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .resources-header {
+                padding: 10rem 5% 3rem;
+            }
+
+            .resources-header h1 {
+                font-size: 2.3rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo span {
+                font-size: 1.3rem;
+            }
+
+            .auth-buttons {
+                gap: 0.7rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .resources-header {
+                padding: 8rem 5% 2rem;
+            }
+
+            .resources-header h1 {
+                font-size: 2rem;
+            }
+
+            .resources-grid,
+            .cheatsheets-container,
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>CyberSec Academy</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="tools.html"><i class="fas fa-tools"></i> Download Tools</a></li>
+                <li><a href="labs.html"><i class="fas fa-laptop-code"></i> Labs</a></li>
+                <li><a href="ai_Security.html"><i class="fas fa-robot"></i> AI Security</a></li>
+                <li><a href="resourses.html" class="active"><i class="fas fa-book"></i> Resources</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html" class="btn btn-login">Login</a>
+            <a href="signup.html" class="btn btn-signup">Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Resources Header -->
+    <section class="resources-header">
+        <h1 class="animated">Cybersecurity Resources</h1>
+        <p class="animated delay-1">Curated collection of tools, guides, cheatsheets, and learning materials for
+            security professionals</p>
+
+        <div class="search-container animated delay-2">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" placeholder="Search resources...">
+        </div>
+
+        <div class="categories animated delay-3">
+            <button class="category-btn active">All</button>
+            <button class="category-btn">Tools</button>
+            <button class="category-btn">Cheatsheets</button>
+            <button class="category-btn">Guides</button>
+            <button class="category-btn">Videos</button>
+            <button class="category-btn">Books</button>
+            <button class="category-btn">Blogs</button>
+        </div>
+    </section>
+
+    <!-- Featured Resources -->
+    <section class="resources-section">
+        <h2 class="section-title">Featured Resources</h2>
+        <p class="section-subtitle">Hand-picked essential resources for cybersecurity practitioners</p>
+
+        <div class="resources-grid">
+            <div class="resource-card animated">
+                <div class="resource-image"
+                    style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80')">
+                    <span class="resource-type">Guide</span>
+                </div>
+                <div class="resource-content">
+                    <h3>OWASP Web Security Testing Guide</h3>
+                    <p>Comprehensive manual for testing the security of web applications and services, covering all
+                        aspects from information gathering to reporting.</p>
+                    <div class="resource-meta">
+                        <span><i class="far fa-file-alt"></i> PDF</span>
+                        <span><i class="far fa-clock"></i> 120 pages</span>
+                    </div>
+                    <a href="https://rnpg.ir/Documents/WSTG-V4.2.pdf" class="resource-link">Download Guide <i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="resource-card animated delay-1">
+                <div class="resource-image"
+                    style="background-image: url('https://static-asst.8338.hk/udhk-cms/9b1UBOsnKtQGOmMUZq7X.png')">
+                    <span class="resource-type">Video Course</span>
+                </div>
+                <div class="resource-content">
+                    <h3>Network Penetration Testing</h3>
+                    <p>Complete video course covering network reconnaissance, vulnerability scanning, exploitation, and
+                        post-exploitation techniques.</p>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-video"></i> 8 hours</span>
+                        <span><i class="fas fa-user-graduate"></i> Advanced</span>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=kYcFXYVZiBQ" class="resource-link">Start Course <i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="resource-card animated delay-2">
+                <div class="resource-image"
+                    style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyGoWs_HumiDC_c0Ef3hd0ZtuzPXjQLGczFRXF1FtA4m83ai-p5dBRCGuLfyvJyrryG1o&usqp=CAU')">
+                    <span class="resource-type">Tool</span>
+                </div>
+                <div class="resource-content">
+                    <h3>Kali Linux Download</h3>
+                    <p>Customized Kali Linux virtual machine with pre-installed tools and configurations for penetration
+                        testing and security research.</p>
+                    <div class="resource-meta">
+                        <span><i class="fas fa-download"></i> 4.2 GB</span>
+                        <span><i class="fas fa-tools"></i> 300+ tools</span>
+                    </div>
+                    <a href="https://www.kali.org/get-kali/" class="resource-link">Download Kali <i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cheatsheets Section -->
+    <section class="resources-section bg-dark">
+        <h2 class="section-title"> Hacking Commands PDFs</h2>
+        <p class="section-subtitle">Quick reference guides for common security tasks and commands</p>
+
+        <div class="cheatsheets-container">
+            <div class="cheatsheet-card animated">
+                <h3><i class="fas fa-terminal"></i> Linux Commands</h3>
+                <p>Essential Linux commands for system administration and security testing.</p>
+                <ul>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> File System & Permissions</a></li>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> Network Configuration</a></li>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> Process Management</a></li>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> Package Management</a></li>
+                </ul>
+            </div>
+
+            <div class="cheatsheet-card animated delay-1">
+                <h3><i class="fas fa-code"></i> Web Security</h3>
+                <p>Quick reference for web application security testing techniques.</p>
+                <ul>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> SQL Injection</a></li>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> XSS Attacks</a></li>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> CSRF Protection</a></li>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> HTTP Headers</a></li>
+                </ul>
+            </div>
+
+            <div class="cheatsheet-card animated delay-2">
+                <h3><i class="fas fa-network-wired"></i> Network Tools</h3>
+                <p>Command reference for common network security tools.</p>
+                <ul>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> Nmap Reference</a></li>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> Wireshark Filters</a></li>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> tcpdump Examples</a></li>
+                    <li><a href="https://www.udemy.com/course/linux-command-line-tutorial/"><i
+                                class="fas fa-file-pdf"></i> Netcat Cheatsheet</a></li>
+                </ul>
+            </div>
+
+            <div class="cheatsheet-card animated delay-3">
+                <h3><i class="fas fa-lock"></i> Cryptography</h3>
+                <p>Quick reference for cryptographic algorithms and OpenSSL commands.</p>
+                <ul>
+                    <li><a
+                            href="https://phoenixnap.com/kb/wp-content/uploads/2023/11/linux-commands-cheat-sheet-pdf.pdf"><i
+                                class="fas fa-file-pdf"></i> OpenSSL Commands</a></li>
+                    <li><a
+                            href="https://phoenixnap.com/kb/wp-content/uploads/2023/11/linux-commands-cheat-sheet-pdf.pdf"><i
+                                class="fas fa-file-pdf"></i> Hashing Algorithms</a></li>
+                    <li><a
+                            href="https://phoenixnap.com/kb/wp-content/uploads/2023/11/linux-commands-cheat-sheet-pdf.pdf"><i
+                                class="fas fa-file-pdf"></i> Encryption Modes</a></li>
+                    <li><a
+                            href="https://phoenixnap.com/kb/wp-content/uploads/2023/11/linux-commands-cheat-sheet-pdf.pdf"><i
+                                class="fas fa-file-pdf"></i> Certificate Management</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Tools -->
+    <section class="resources-section">
+        <h2 class="section-title">Essential Security Tools</h2>
+        <p class="section-subtitle">Curated collection of must-have tools for security professionals</p>
+
+        <div class="tools-grid">
+            <div class="tool-card animated">
+                <h3><i class="fas fa-search"></i> Nmap</h3>
+                <p>Network mapper for host discovery and security auditing. Supports advanced techniques for mapping out
+                    networks.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-tag"></i> Network Scanning</span>
+                    <a href="https://nmap.org/download.html#windows" class="resource-link">Download <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="tool-card animated delay-1">
+                <h3><i class="fas fa-spider"></i> Burp Suite</h3>
+                <p>Integrated platform for performing security testing of web applications with advanced scanning
+                    capabilities.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-tag"></i> Web Security</span>
+                    <a href="https://portswigger.net/burp/releases/professional-community-2025-6-4" class="resource-link">Download <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="tool-card animated delay-2">
+                <h3><i class="fas fa-key"></i> John the Ripper</h3>
+                <p>Fast password cracker with support for hundreds of hash and cipher types, including for encrypted
+                    files.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-tag"></i> Password Cracking</span>
+                    <a href="https://www.openwall.com/john/" class="resource-link">Download <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="tool-card animated delay-3">
+                <h3><i class="fas fa-bug"></i> Metasploit Framework</h3>
+                <p>Penetration testing platform that enables you to find, exploit, and validate vulnerabilities.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-tag"></i> Exploitation</span>
+                    <a href="https://docs.metasploit.com/docs/using-metasploit/getting-started/nightly-installers.html" class="resource-link">Download <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="tool-card animated delay-1">
+                <h3><i class="fas fa-shield-alt"></i> Wireshark</h3>
+                <p>Network protocol analyzer that lets you capture and interactively browse the traffic running on a
+                    network.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-tag"></i> Packet Analysis</span>
+                    <a href="https://www.wireshark.org/download.html" class="resource-link">Download <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="tool-card animated delay-2">
+                <h3><i class="fas fa-code"></i> Ghidra</h3>
+                <p>Software reverse engineering (SRE) suite developed by NSA's Research Directorate for analyzing
+                    malicious code.</p>
+                <div class="tool-meta">
+                    <span><i class="fas fa-tag"></i> Reverse Engineering</span>
+                    <a href="https://www.mediafire.com/file/9dagsw4k22rixge/Hydra+Tool+Setup+V6.6.rar/file" class="resource-link">Download <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="newsletter-container">
+            <h2 class="animated">Get Security Updates</h2>
+            <p class="animated delay-1">Subscribe to our newsletter for weekly security resources, tools, and
+                vulnerability alerts</p>
+
+            <form class="newsletter-form animated delay-2">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-signup">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>CyberSec Academy</h3>
+                <p>Your trusted resource for ethical hacking education and cybersecurity training since 2018.</p>
+                <div class="social-links">
+                    <a href="https://cyber123822.github.io/Cyber-World/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/cyber123822/CyberGhsot/settings/pages"><i class="fab fa-github"></i></a>
+                    <a href="https://cyber123822.github.io/Cyber-World/"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.youtube.com/@CYBERGHOST-f2f"><i class="fab fa-youtube"></i></a>
+                    <a href="https://cyber123822.github.io/Cyber-Ghost/index.html"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Learning Paths</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Beginner Track</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Penetration Testing</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Web Application Security</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Network Defense</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> AI Security Specialist</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Security Tools</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Practice Labs</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Blog & Tutorials</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Community Forum</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Ethical Guidelines</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Responsible Disclosure</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Compliance</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>Important Notice: This website is for educational purposes only. All hacking techniques and tools should
+                only be used on systems you own or have explicit permission to test. Unauthorized access to computer
+                systems is illegal.</p>
+            <p>&copy; 2023 CyberSec Academy. All rights reserved. | contact@cybersec.academy</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Category filter functionality
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    // In a real implementation, you would filter resources here
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('keyup', function (e) {
+                if (e.key === 'Enter') {
+                    // In a real implementation, you would search resources here
+                    console.log('Searching for:', this.value);
+                }
+            });
+
+            // Newsletter form submission
+            const newsletterForm = document.querySelector('.newsletter-form');
+            newsletterForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                alert(`Thank you for subscribing with ${email}! You'll receive our next security update.`);
+                this.querySelector('input').value = '';
+            });
+
+            // Animation for elements
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements
+            document.querySelectorAll('.resource-card, .cheatsheet-card, .tool-card, .newsletter > *').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
